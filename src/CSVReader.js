@@ -15,7 +15,7 @@ class CSVReader extends React.Component {
     handleChange = event => {
         this.setState({
             csvfile: event.target.files[0]
-        });
+        }, this.importCSV);
     };
 
     importCSV = () => {
@@ -31,14 +31,14 @@ class CSVReader extends React.Component {
 
     formatData(result) {
         let rawData = result.data;
-        let [data, avgFPS, onePercentLow, pointOneLow] = formatter.format(rawData);
-        this.props.onDataChange(data, avgFPS, onePercentLow, pointOneLow);
+        let res = formatter.format(rawData);
+        this.props.onDataChange(res);
     }
 
     render() {
         return (
             <div className="App">
-                <h2>Import CSV File!</h2>
+                {/* <h2>Import CSV File!</h2> */}
                 <input
                     accept=".csv"
                     className="csv-input"
@@ -51,7 +51,7 @@ class CSVReader extends React.Component {
                     onChange={this.handleChange}
                 />
                 <p />
-                <button onClick={this.importCSV}> Upload now!</button>
+                {/* <button onClick={this.importCSV}> Upload now!</button> */}
             </div>
         );
     }
