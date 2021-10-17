@@ -12,11 +12,17 @@ class CSVReader extends React.Component {
         this.formatData = this.formatData.bind(this);
     }
 
-    handleChange = event => {
+    handleFileChange = event => {
         this.setState({
             csvfile: event.target.files[0]
         }, this.importCSV);
     };
+
+    handleNameChange = event => {
+        let newName = event.target.value;
+        let idx = this.props.idx;
+        this.props.onNameChange(newName, idx);
+    }
 
     importCSV = () => {
         const { csvfile } = this.state;
@@ -37,20 +43,15 @@ class CSVReader extends React.Component {
 
     render() {
         return (
-            <div className="App">
-                {/* <h2>Import CSV File!</h2> */}
+            <div>
                 <input
-                    accept=".csv"
-                    className="csv-input"
-                    type="file"
-                    ref={input => {
-                        this.filesInput = input;
-                    }}
-                    name="file"
-                    placeholder={null}
-                    onChange={this.handleChange}
+                    accept=".csv" className="csv-input" type="file"
+                    // ref={input => {
+                    //     this.filesInput = input;
+                    // }}
+                    name="file" placeholder={null} onChange={this.handleFileChange}
                 />
-                <p />
+                <input type="text" onChange={this.handleNameChange}/>
                 {/* <button onClick={this.importCSV}> Upload now!</button> */}
             </div>
         );

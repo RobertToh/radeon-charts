@@ -10,15 +10,15 @@ class CustomLineChart extends React.Component {
         let res = [];
         let numPoints = 0;
         if (props.data1 !== undefined) {
-            res.push(<Line data={props.data1[0]} type="monotone" dataKey="FPS" stroke="#8884d8" dot={false} />);
+            res.push(<Line data={props.data1[0]} name={props.names[0]} type="monotone" dataKey="FPS" stroke="#8884d8" dot={false} />);
             numPoints = Math.max(numPoints, props.data1[0].length);
         }
         if (props.data2 !== undefined) {
-            res.push(<Line data={props.data2[0]} type="monotone" dataKey="FPS" stroke="#aaaaaa" dot={false} />);
+            res.push(<Line data={props.data2[0]} name={props.names[1]} type="monotone" dataKey="FPS" stroke="#aaaaaa" dot={false} />);
             numPoints = Math.max(numPoints, props.data2[0].length);
         }
         if (props.data3 !== undefined) {
-            res.push(<Line data={props.data3[0]} type="monotone" dataKey="FPS" stroke="#8784d8" dot={false} />);
+            res.push(<Line data={props.data3[0]} name={props.names[2]} type="monotone" dataKey="FPS" stroke="#8784d8" dot={false} />);
             numPoints = Math.max(numPoints, props.data3[0].length);
         }
         return [res, numPoints];
@@ -56,7 +56,7 @@ const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
         let items = [<p key="Time">{`Time : ${label}`}</p>];
         for (let i = 0; i < payload.length; i++) {
-            items.push(<p key={payload[i].name}>{`${payload[i].dataKey} : ${payload[i].value}`}</p>);
+            items.push(<p key={payload[i].name}>{`${payload[i].name} : ${payload[i].value}`}</p>);
         }
         return (
             <div className="custom-tooltip">
