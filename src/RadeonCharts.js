@@ -36,8 +36,15 @@ class RadeonChart extends React.Component {
         this.setState({names});
     }
 
+    validHeader(header) {
+        if (this.state.data1 && this.state.data1[0][0][header]) return true;
+        if (this.state.data2 && this.state.data2[0][0][header]) return true;
+        if (this.state.data3 && this.state.data3[0][0][header]) return true;
+        return false;
+    }
+
     render() {
-        console.log(this.state);
+        //console.log(this.state);
         return (
             <div>
                 <div>
@@ -50,11 +57,23 @@ class RadeonChart extends React.Component {
                     }
                 </div>
             
-                {this.state.data1 !== undefined && 
-                <div>
-                    <CustomLineChart className="fps-timeline" data1={this.state.data1} data2={this.state.data2} data3={this.state.data3} names={this.state.names}/>
-                </div>
+                {this.validHeader("FPS") && 
+                    <CustomLineChart className="fps-timeline" dataKey="FPS" data1={this.state.data1} data2={this.state.data2} data3={this.state.data3} names={this.state.names}/>
                 }
+                {this.validHeader("GPU TEMP") &&
+                    <CustomLineChart className="fps-timeline" dataKey="GPU TEMP" data1={this.state.data1} data2={this.state.data2} data3={this.state.data3} names={this.state.names} />
+                }
+                {this.validHeader("GPU Hotspot") &&
+                    <CustomLineChart className="fps-timeline" dataKey="GPU Hotspot" data1={this.state.data1} data2={this.state.data2} data3={this.state.data3} names={this.state.names} />
+                }
+                {this.validHeader("GPU SCLK") &&
+                    <CustomLineChart className="fps-timeline" dataKey="GPU SCLK" data1={this.state.data1} data2={this.state.data2} data3={this.state.data3} names={this.state.names} />
+                }
+                {this.validHeader("GPU MCLK") &&
+                    <CustomLineChart className="fps-timeline" dataKey="GPU MCLK" data1={this.state.data1} data2={this.state.data2} data3={this.state.data3} names={this.state.names} />
+                }
+
+
             </div>
         )
     }

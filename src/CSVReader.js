@@ -39,6 +39,8 @@ class CSVReader extends React.Component {
         let rawData = result.data;
         let res = formatter.format(rawData);
         this.props.onDataChange(res);
+        // let idx = this.props.idx;
+        // this.props.onNameChange(this.state.csvfile.name, idx);
     }
 
     render() {
