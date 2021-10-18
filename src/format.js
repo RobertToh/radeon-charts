@@ -1,16 +1,16 @@
 const avgFPS = (fpsArr) => {
-    return fpsArr.reduce((acc, curr) => acc + curr, 0) / fpsArr.length;
+    return +(fpsArr.reduce((acc, curr) => acc + curr, 0) / fpsArr.length).toFixed(1);
 }
 
 const xPercentLow = (fpsArr, x) => {
     let xPercent = x / 100;
     let samples = Math.ceil(fpsArr.length * xPercent);
-    let sorted = fpsArr.slice().sort();
+    let sorted = fpsArr.slice().sort((a, b) => a - b);
     let xPercentLow = 0;
     for (let i = 0; i < samples; i++) {
         xPercentLow += sorted[i];
     }
-    return xPercentLow / samples;
+    return +(xPercentLow / samples).toFixed(1);
 }
 
 const format = (data) => {

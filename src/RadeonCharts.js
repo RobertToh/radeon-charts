@@ -1,6 +1,7 @@
 import React from "react";
 import CSVReader from "./CSVReader";
 import CustomLineChart from "./CustomLineChart";
+import FPSBarChart from "./FPSBarChart";
 
 class RadeonChart extends React.Component {
     constructor(props) {
@@ -56,21 +57,24 @@ class RadeonChart extends React.Component {
                         <CSVReader className="Data3" onDataChange={this.handleDataThreeChange} onNameChange={this.handleNameChange} idx={2}/>
                     }
                 </div>
-            
+
+                {this.validHeader("FPS") &&
+                    <FPSBarChart data1={this.state.data1} data2={this.state.data2} data3={this.state.data3} names={this.state.names}/>
+                }
                 {this.validHeader("FPS") && 
                     <CustomLineChart className="fps-timeline" dataKey="FPS" data1={this.state.data1} data2={this.state.data2} data3={this.state.data3} names={this.state.names}/>
                 }
                 {this.validHeader("GPU TEMP") &&
-                    <CustomLineChart className="fps-timeline" dataKey="GPU TEMP" data1={this.state.data1} data2={this.state.data2} data3={this.state.data3} names={this.state.names} />
+                    <CustomLineChart className="gpu-temp" dataKey="GPU TEMP" data1={this.state.data1} data2={this.state.data2} data3={this.state.data3} names={this.state.names} />
                 }
                 {this.validHeader("GPU Hotspot") &&
-                    <CustomLineChart className="fps-timeline" dataKey="GPU Hotspot" data1={this.state.data1} data2={this.state.data2} data3={this.state.data3} names={this.state.names} />
+                    <CustomLineChart className="gpu-hotspot" dataKey="GPU Hotspot" data1={this.state.data1} data2={this.state.data2} data3={this.state.data3} names={this.state.names} />
                 }
                 {this.validHeader("GPU SCLK") &&
-                    <CustomLineChart className="fps-timeline" dataKey="GPU SCLK" data1={this.state.data1} data2={this.state.data2} data3={this.state.data3} names={this.state.names} />
+                    <CustomLineChart className="gpu-sclk" dataKey="GPU SCLK" data1={this.state.data1} data2={this.state.data2} data3={this.state.data3} names={this.state.names} />
                 }
                 {this.validHeader("GPU MCLK") &&
-                    <CustomLineChart className="fps-timeline" dataKey="GPU MCLK" data1={this.state.data1} data2={this.state.data2} data3={this.state.data3} names={this.state.names} />
+                    <CustomLineChart className="gpu-mclk" dataKey="GPU MCLK" data1={this.state.data1} data2={this.state.data2} data3={this.state.data3} names={this.state.names} />
                 }
 
 
