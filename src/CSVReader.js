@@ -7,24 +7,32 @@ class CSVReader extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            csvfile: undefined
+            csvfile: undefined,
+            name: ""
         };
         this.formatData = this.formatData.bind(this);
+        this.handleFileChange = this.handleFileChange.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleFileChange = event => {
+    handleFileChange(event) {
         this.setState({
             csvfile: event.target.files[0]
         }, this.importCSV);
     };
 
-    handleNameChange = event => {
-        let newName = event.target.value;
-        let idx = this.props.idx;
-        this.props.onNameChange(newName, idx);
+    handleNameChange(event) {
+        this.setState({name: event.target.value});
     }
 
-    importCSV = () => {
+    handleSubmit(event) {
+        let idx = this.props.idx;
+        this.props.onNameChange(this.state.name, idx);
+        event.preventDefault();
+    }
+
+    importCSV() {
         const { csvfile } = this.state;
         if (csvfile == undefined) return;
         Papa.parse(csvfile, {
@@ -39,22 +47,21 @@ class CSVReader extends React.Component {
         let rawData = result.data;
         let res = formatter.format(rawData);
         this.props.onDataChange(res);
-        // let idx = this.props.idx;
-        // this.props.onNameChange(this.state.csvfile.name, idx);
     }
 
     render() {
         return (
             <div>
-                <input
-                    accept=".csv" className="csv-input" type="file"
-                    // ref={input => {
-                    //     this.filesInput = input;
-                    // }}
-                    name="file" placeholder={null} onChange={this.handleFileChange}
-                />
-                <input type="text" onChange={this.handleNameChange}/>
-                {/* <button onClick={this.importCSV}> Upload now!</button> */}
+                <form onSubmit={this.handleSubmit}>
+                    <input
+                        accept=".csv" className="csv-input" type="file"
+                        // ref={input => {
+                        //     this.filesInput = input;
+                        // }}
+                        name="file" placeholder={null} onChange={this.handleFileChange}
+                    />
+                    <input type="text" value={this.state.name} onChange={this.handleNameChange} />
+                </form>
             </div>
         );
     }
