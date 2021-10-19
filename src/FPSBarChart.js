@@ -1,6 +1,7 @@
 import React from "react";
 import {BarChart, Bar, XAxis, YAxis, Label, Legend, Cell} from "recharts";
 
+const colors = ["#c32123", "#c2520f", "#cba32f"];
 class FPSBarChart extends React.Component {
     constructor(props) {
         super(props);
@@ -38,25 +39,16 @@ class FPSBarChart extends React.Component {
 
     render() {
         let data = this.formatData(this.props);
-        let colors = this.props.colors;
-        let cells = data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={colors[index]} />
-            ))
-    
         return(
-            <BarChart layout="vertical" width={1300} height={350} data={data}>
-                <XAxis type="number" />
-                <YAxis type="category" dataKey="Name" />
-                <Bar dataKey="Avg FPS" fill="#8884d8" label={{position:"right", fill:"white"}}>
-                    {cells}
-                </Bar>
-                <Bar dataKey="1% Low" fill="#8884d8" label={{ position:"right", fill:"white" }}>
-                    {cells}
-                </Bar>
-                <Bar dataKey="0.1% Low" fill="#8884d8" label={{ position:"right", fill:"white" }}>
-                    {cells}
-                </Bar>
-                <Legend />
+            <BarChart layout="vertical" width={1300} height={400} data={data} margin={{ top: 5, right: 40, bottom: 25, left: 30 }}>
+                <XAxis type="number" stroke="#a8a8a8"> 
+                    <Label value="Frames Per Second" position="bottom" fill="#a8a8a8" />
+                </XAxis>
+                <YAxis type="category" dataKey="Name" stroke="#a8a8a8" />
+                <Bar dataKey="Avg FPS" fill={colors[0]} label={{position:"right", fill:"white"}} />
+                <Bar dataKey="1% Low" fill={colors[1]} label={{ position:"right", fill:"white" }}/>
+                <Bar dataKey="0.1% Low" fill={colors[2]} label={{ position:"right", fill:"white" }}/>
+                <Legend verticalAlign="top" align="center" layout="vertical" wrapperStyle={{right: "50px", top: "10px"}}/>
             </BarChart>
         )
     }
