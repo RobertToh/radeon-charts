@@ -10,15 +10,15 @@ class CustomLineChart extends React.Component {
         let res = [];
         let numPoints = 0;
         let dataKey = props.dataKey;
-        if (props.data1 !== undefined) {
+        if (props.data1 && props.data1[0][0][dataKey]) {
             res.push(<Line data={props.data1[0]} name={props.names[0]} type="monotone" dataKey={dataKey} stroke="#8884d8" dot={false} key="data1" />);
             numPoints = Math.max(numPoints, props.data1[0].length);
         }
-        if (props.data2 !== undefined) {
+        if (props.data2 && props.data2[0][0][dataKey]) {
             res.push(<Line data={props.data2[0]} name={props.names[1]} type="monotone" dataKey={dataKey} stroke="#aaaaaa" dot={false} key="data2"/>);
             numPoints = Math.max(numPoints, props.data2[0].length);
         }
-        if (props.data3 !== undefined) {
+        if (props.data3 && props.data3[0][0][dataKey]) {
             res.push(<Line data={props.data3[0]} name={props.names[2]} type="monotone" dataKey={dataKey} stroke="#cccccc" dot={false} key="data3"/>);
             numPoints = Math.max(numPoints, props.data3[0].length);
         }

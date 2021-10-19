@@ -8,7 +8,7 @@ class CSVReader extends React.Component {
         super(props);
         this.state = {
             csvfile: undefined,
-            name: ""
+            name: "File " + (props.idx + 1) 
         };
         this.formatData = this.formatData.bind(this);
         this.handleFileChange = this.handleFileChange.bind(this);
