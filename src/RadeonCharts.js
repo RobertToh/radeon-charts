@@ -2,6 +2,9 @@ import React from "react";
 import CSVReader from "./CSVReader";
 import CustomLineChart from "./CustomLineChart";
 import FPSBarChart from "./FPSBarChart";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 
 // array of objects, each object will have "title" and "yAxis" fields
 const chartTexts = [
@@ -68,7 +71,7 @@ class RadeonChart extends React.Component {
         //console.log(this.state);
         let {data1, data2, data3, names, colors} = this.state;
         return (
-            <div>
+            <Container fluid>
                 <div>
                     <CSVReader onDataChange={this.handleDataOneChange} onNameChange={this.handleNameChange} idx={0} onColorChange={this.handleColorChange} color={colors[0]}/>
                     {data1 !== undefined &&
@@ -79,33 +82,74 @@ class RadeonChart extends React.Component {
                     }
                 </div>
 
-                {this.validHeader("FPS") &&
-                    <FPSBarChart data1={data1} data2={data2} data3={data3} names={names} colors={colors} />
-                }
-                {this.validHeader("FPS") && 
-                    <CustomLineChart dataKey="FPS" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[0]}/>
-                }
-                {this.validHeader("GPU TEMP") &&
-                    <CustomLineChart dataKey="GPU TEMP" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[1]}/>
-                }
-                {this.validHeader("GPU Hotspot") &&
-                    <CustomLineChart dataKey="GPU Hotspot" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[2]}/>
-                }
-                {this.validHeader("GPU SCLK") &&
-                    <CustomLineChart dataKey="GPU SCLK" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[3]}/>
-                }
-                {this.validHeader("GPU UTIL") &&
-                    <CustomLineChart dataKey="GPU UTIL" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[4]}/>
-                }
-                {this.validHeader("GPU PWR") &&
-                    <CustomLineChart dataKey="GPU PWR" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[5]}/>
-                }
-                {this.validHeader("GPU FAN") &&
-                    <CustomLineChart dataKey="GPU FAN" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[6]}/>
-                }
+                <Row className="mt-3 mb-3 justify-content-md-center">
+                    <Col xs="auto">
+                    {this.validHeader("FPS") &&
+                        <FPSBarChart data1={data1} data2={data2} data3={data3} names={names} colors={colors} />
+                    }
+                    </Col>
+                </Row>
+                <Row className="mb-3 justify-content-md-center">
+                    <Col xs="auto">
+                        {this.validHeader("FPS") && 
+                            <CustomLineChart dataKey="FPS" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[0]} />
+                        }
+                    </Col>
+                </Row>
+                <Row className="mb-3 justify-content-md-center">
+                    <Col xs="auto">
+                        {this.validHeader("GPU TEMP") &&
+                            <CustomLineChart dataKey="GPU TEMP" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[1]} />
+                        }
+                    </Col>
+                </Row>
+                <Row className="mb-3 justify-content-md-center">
+                    <Col xs="auto">
+                        {this.validHeader("GPU Hotspot") &&
+                            <CustomLineChart dataKey="GPU Hotspot" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[2]} />
+                        }
+                    </Col>
+                </Row>
+                <Row className="mb-3 justify-content-md-center">
+                    <Col xs="auto">
+                        {this.validHeader("GPU SCLK") &&
+                            <CustomLineChart dataKey="GPU SCLK" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[3]} />
+                        }
+                    </Col>
+                </Row>
+                <Row className="mb-3 justify-content-md-center">
+                    <Col xs="auto">
+                        {this.validHeader("GPU UTIL") &&
+                            <CustomLineChart dataKey="GPU UTIL" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[4]} />
+                        }
+                    </Col>
+                </Row>
+                <Row className="mb-3 justify-content-md-center">
+                    <Col xs="auto">
+                        {this.validHeader("GPU PWR") &&
+                            <CustomLineChart dataKey="GPU PWR" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[5]} />
+                        }
+                    </Col>
+                </Row>
+                <Row className="mb-3 justify-content-md-center">
+                    <Col xs="auto">
+                        {this.validHeader("GPU FAN") &&
+                            <CustomLineChart dataKey="GPU FAN" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[6]} />
+                        }
+                    </Col>
+                </Row>
 
 
-            </div>
+
+                
+                
+                
+                
+                
+                
+
+
+            </Container>
         )
     }
 

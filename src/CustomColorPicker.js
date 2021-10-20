@@ -37,7 +37,7 @@ class CustomColorPicker extends React.Component {
             'default': {
                 color: {
                     width: '36px',
-                    height: '14px',
+                    height: '26px',
                     borderRadius: '2px',
                     background: `${color}`,
                 },

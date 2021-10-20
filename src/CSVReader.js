@@ -1,6 +1,9 @@
 import React from "react";
-import { ChromePicker } from "react-color";
 import CustomColorPicker from "./CustomColorPicker.js";
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 
 const Papa = require("papaparse");
 
@@ -54,19 +57,24 @@ class CSVReader extends React.Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                        accept=".csv" className="csv-input" type="file"
-                        // ref={input => {
-                        //     this.filesInput = input;
-                        // }}
-                        name="file" placeholder={null} onChange={this.handleFileChange}
-                    />
-                    <input type="text" value={this.state.name} onChange={this.handleNameChange} />
-                </form>
-                <CustomColorPicker color={this.props.color} onColorChange={this.props.onColorChange} idx={this.props.idx} />
-            </div>
+            <Container className="mt-2 mb-2">
+                <Form>
+                    <Row className="justify-content-md-center">
+                        <Col xs={3}>
+                            <Form.Label className="mb-1">File</Form.Label>
+                            <Form.Control type="file" accept=".csv" onChange={this.handleFileChange}/>
+                        </Col>
+                        <Col xs={2}>
+                            <Form.Label className="mb-1">Name</Form.Label>
+                            <Form.Control type="input" value={this.state.name} onChange={this.handleNameChange} />
+                        </Col>
+                        <Col xs="auto">
+                            <Form.Label className="mb-1">Color</Form.Label>
+                            <CustomColorPicker color={this.props.color} onColorChange={this.props.onColorChange} idx={this.props.idx} />
+                        </Col>
+                    </Row>
+                </Form>
+            </Container>
         );
     }
 }

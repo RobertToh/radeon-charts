@@ -33,7 +33,7 @@ class CustomLineChart extends React.Component {
         let unit = this.props.chartTexts.unit;
         return (
             <div>
-                <LineChart width={1300} height={450} margin={{ top: 25, right: 40, bottom: 25, left: 0 }}>
+                <LineChart width={1300} height={450} margin={{ top: 25, right: 40, bottom: 25, left: 5 }}>
                     <XAxis padding={{ left: 10, right: 10 }} interval={interval} dataKey="Time" allowDuplicatedCategory={false} stroke="#a8a8a8">
                         <Label value="Time Elapsed (s)" position="bottom" fill="#a8a8a8"/>
                         <Label value={title} position="top" offset={360} fill="#a8a8a8"/>
@@ -62,7 +62,7 @@ const CustomTooltip = (props) => {
             items.push(<p key={payload[i].name}>{`${payload[i].name} : ${payload[i].value + unit}`}</p>);
         }
         return (
-            <div className="custom-tooltip">
+            <div className="custom-tooltip mt-3">
                 {items}
             </div>
         );
