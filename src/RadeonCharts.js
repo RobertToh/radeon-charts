@@ -30,6 +30,7 @@ class RadeonChart extends React.Component {
         this.handleDataTwoChange = this.handleDataTwoChange.bind(this);
         this.handleDataThreeChange = this.handleDataThreeChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleColorChange = this.handleColorChange.bind(this);
     }
 
     handleDataOneChange(data1) {
@@ -50,6 +51,12 @@ class RadeonChart extends React.Component {
         this.setState({names});
     }
 
+    handleColorChange(newColor, idx) {
+        let colors = this.state.colors;
+        colors[idx] = newColor;
+        this.setState({colors});
+    }
+
     validHeader(header) {
         if (this.state.data1 && this.state.data1[0][0][header]) return true;
         if (this.state.data2 && this.state.data2[0][0][header]) return true;
@@ -63,12 +70,12 @@ class RadeonChart extends React.Component {
         return (
             <div>
                 <div>
-                    <CSVReader className="Data1" onDataChange={this.handleDataOneChange} onNameChange={this.handleNameChange} idx={0}/>
+                    <CSVReader onDataChange={this.handleDataOneChange} onNameChange={this.handleNameChange} idx={0} onColorChange={this.handleColorChange} color={colors[0]}/>
                     {data1 !== undefined &&
-                        <CSVReader className="Data2" onDataChange={this.handleDataTwoChange} onNameChange={this.handleNameChange} idx={1}/>
+                        <CSVReader onDataChange={this.handleDataTwoChange} onNameChange={this.handleNameChange} idx={1} onColorChange={this.handleColorChange} color={colors[1]}/>
                     }
                     {data2 !== undefined &&
-                        <CSVReader className="Data3" onDataChange={this.handleDataThreeChange} onNameChange={this.handleNameChange} idx={2}/>
+                        <CSVReader onDataChange={this.handleDataThreeChange} onNameChange={this.handleNameChange} idx={2} onColorChange={this.handleColorChange} color={colors[2]}/>
                     }
                 </div>
 

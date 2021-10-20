@@ -1,4 +1,7 @@
 import React from "react";
+import { ChromePicker } from "react-color";
+import CustomColorPicker from "./CustomColorPicker.js";
+
 const Papa = require("papaparse");
 
 const formatter = require("./format.js");
@@ -62,6 +65,7 @@ class CSVReader extends React.Component {
                     />
                     <input type="text" value={this.state.name} onChange={this.handleNameChange} />
                 </form>
+                <CustomColorPicker color={this.props.color} onColorChange={this.props.onColorChange} idx={this.props.idx} />
             </div>
         );
     }
