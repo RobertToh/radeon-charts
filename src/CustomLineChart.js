@@ -11,15 +11,15 @@ class CustomLineChart extends React.Component {
         let numPoints = 0;
         let dataKey = props.dataKey;
         if (props.data1 && props.data1[0][0][dataKey]) {
-            res.push(<Line data={props.data1[0]} name={props.names[0]} type="monotone" dataKey={dataKey} stroke={props.colors[0]} dot={false} key="data1" />);
+            res.push(<Line data={props.data1[0]} name={props.names[0]} type="monotone" dataKey={dataKey} stroke={props.colors[0]} strokeWidth={1.5} dot={false} key="data1" />);
             numPoints = Math.max(numPoints, props.data1[0].length);
         }
         if (props.data2 && props.data2[0][0][dataKey]) {
-            res.push(<Line data={props.data2[0]} name={props.names[1]} type="monotone" dataKey={dataKey} stroke={props.colors[1]} dot={false} key="data2"/>);
+            res.push(<Line data={props.data2[0]} name={props.names[1]} type="monotone" dataKey={dataKey} stroke={props.colors[1]} strokeWidth={1.5} dot={false} key="data2"/>);
             numPoints = Math.max(numPoints, props.data2[0].length);
         }
         if (props.data3 && props.data3[0][0][dataKey]) {
-            res.push(<Line data={props.data3[0]} name={props.names[2]} type="monotone" dataKey={dataKey} stroke={props.colors[2]} dot={false} key="data3"/>);
+            res.push(<Line data={props.data3[0]} name={props.names[2]} type="monotone" dataKey={dataKey} stroke={props.colors[2]} strokeWidth={1.5} dot={false} key="data3"/>);
             numPoints = Math.max(numPoints, props.data3[0].length);
         }
         return [res, numPoints];
@@ -38,7 +38,7 @@ class CustomLineChart extends React.Component {
                         <Label value="Time Elapsed (s)" position="bottom" fill="#a8a8a8"/>
                         <Label value={title} position="top" offset={360} fill="#a8a8a8"/>
                     </XAxis>
-                    <YAxis stroke="#dbdbdb">
+                    <YAxis stroke="#a8a8a8" domain={["dataMin", "auto"]}>
                         <Label value={yAxis} position="insideLeft" style={{textAnchor:"middle"}} angle={-90} offset={10} fill="#a8a8a8"/>
                     </YAxis>
                     <CartesianGrid stroke="#a8a8a8" vertical={false}/>
