@@ -23,5 +23,24 @@
 }
 
 .recharts-wrapper {
-  background-color: #272727
+  background-color: #272727;
+  margin: auto;
+}
+
+.carousel {
+  width:900px;
+  height:500px;
+  margin: auto;
+}
+
+.carousel-control-next-icon {
+  bottom: 5px;
+  left: 0px;
+  position: absolute;
+}
+
+.carousel-control-prev-icon {
+  bottom: 5px;
+  right: 0px;
+  position: absolute;
 }

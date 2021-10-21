@@ -40,10 +40,10 @@ class FPSBarChart extends React.Component {
     render() {
         let data = this.formatData(this.props);
         return(
-            <BarChart layout="vertical" width={1300} height={400} data={data} margin={{ top: 5, right: 40, bottom: 25, left: 30 }}>
+            <BarChart layout="vertical" width={900} height={460} data={data} margin={{ top: 5, right: 40, bottom: 25, left: 30 }}>
                 <XAxis type="number" stroke="#a8a8a8"> 
                     <Label value="Frames Per Second" position="bottom" fill="#a8a8a8" />
-                    <Label value="Average Frames Per Second" position="top" offset={310} fill="#a8a8a8" />
+                    <Label value="Average Frames Per Second" position="top" offset={365} fill="#a8a8a8" />
                 </XAxis>
                 <YAxis type="category" dataKey="Name" stroke="#a8a8a8" />
                 <Bar dataKey="Avg FPS" fill={colors[0]} label={{position:"right", fill:"white"}} />

@@ -58,7 +58,7 @@ class CSVReader extends React.Component {
     render() {
         return (
             <Container className="mt-2 mb-2">
-                <Form>
+                <Form onSubmit={this.handleSubmit}>
                     <Row className="justify-content-md-center">
                         <Col xs={3}>
                             <Form.Label className="mb-1">File</Form.Label>
