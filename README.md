@@ -45,7 +45,7 @@ Project is currently in progress.
 To do:
 - Add some form of a title bar, with description
 - Add ability to export graphs as `.pngs`
-- Fix rendering bug on non-active carousel items
+- Optimize for mobile (currently designed for deskptop only)
 
 
 ## Acknowledgements
