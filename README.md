@@ -20,7 +20,7 @@
 
 
 ## Features
-- Supports upto three `.csv` files
+- Graphs supports upto three `.csv` files
 - Customize the colors and names for each file
 <!-- Export the graphs to PNG -->
 
@@ -43,7 +43,6 @@ Project is currently in progress.
 
 ## Room for Improvement
 To do:
-- Add some form of a title bar, with description
 - Add ability to export graphs as `.pngs`
 - Optimize for mobile (currently designed for deskptop only)
 

@@ -41,3 +41,16 @@
   right: 0px;
   position: absolute;
 }
+
+.bg-title {
+  background-color: #272727;
+}
+
+.my-modal .modal-content {
+  color: white;
+  background-color: #272727;
+}
+
+.my-modal .modal-footer {
+  border-top:  0;
+}
