@@ -17,12 +17,12 @@
 - React-Bootstrap 2.0.0-rc.1
 - Recharts 2.1.5
 - Javascript (ES6)
-
+- recharts-to-png 1.1.1
 
 ## Features
 - Graphs supports upto three `.csv` files
 - Customize the colors and names for each file
-<!-- Export the graphs to PNG -->
+- Export the charts as `.png` files
 
 
 ## Screenshots
@@ -43,7 +43,6 @@ Project is currently in progress.
 
 ## Room for Improvement
 To do:
-- Add ability to export graphs as `.pngs`
 - Optimize for mobile (currently designed for deskptop only)
 
 

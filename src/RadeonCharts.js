@@ -18,6 +18,8 @@ const chartTexts = [
     {title:"GPU Fan Speed", yAxis:"Fan Speed(RPM)", unit:" RPM"}
 ];
 
+
+
 class RadeonChart extends React.Component {
     constructor(props) {
         super(props);
@@ -26,7 +28,9 @@ class RadeonChart extends React.Component {
             data2: undefined,
             data3: undefined,
             names: ["File 1", "File 2", "File 3"],
-            colors: ["#c32123", "#c2520f", "#cba32f"]
+            colors: ["#c32123", "#c2520f", "#cba32f"],
+            updateC1: [0, 0, 0, 0],
+            updateC2: [0, 0, 0, 0]
         };
 
         this.handleDataOneChange = this.handleDataOneChange.bind(this);
@@ -35,9 +39,6 @@ class RadeonChart extends React.Component {
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleColorChange = this.handleColorChange.bind(this);
     }
-    carouselRef1 = [React.createRef(), React.createRef(), React.createRef(), React.createRef()];
-    carouselRef2 = [React.createRef(), React.createRef(), React.createRef(), React.createRef()];
-
     handleDataOneChange(data1) {
         this.setState({data1});
     }
@@ -51,13 +52,13 @@ class RadeonChart extends React.Component {
     }
 
     handleNameChange(newName, idx) {
-        let names = this.state.names;
+        let names = this.state.names.slice();
         names[idx] = newName;
         this.setState({names});
     }
 
     handleColorChange(newColor, idx) {
-        let colors = this.state.colors;
+        let colors = this.state.colors.slice();
         colors[idx] = newColor;
         this.setState({colors});
     }
@@ -71,9 +72,7 @@ class RadeonChart extends React.Component {
 
     render() {
         //console.log(this.state);
-        let {data1, data2, data3, names, colors} = this.state;
-        let cr1 = this.carouselRef1;
-        let cr2 = this.carouselRef2;
+        let {data1, data2, data3, names, colors, updateC1, updateC2} = this.state;
         return (
             <Container fluid>
                 <div>
@@ -89,25 +88,25 @@ class RadeonChart extends React.Component {
                 <Row className="mb-3 justify-content-md-center">
                     <Col xs="auto">
                         {(this.validHeader("FPS") || this.validHeader("GPU SCLK") || this.validHeader("GPU UTIL") ) &&
-                        <Carousel interval={null} onSelect={(s, e) => cr1[s].current.forceUpdate()}>
+                        <Carousel interval={null} onSelect={(s,e) => {let u = updateC1; u[s]++; this.setState({updateC1: u})}}>
                             {this.validHeader("FPS") &&
-                                <Carousel.Item>
-                                    <FPSBarChart data1={data1} data2={data2} data3={data3} names={names} colors={colors} ref={cr1[0]}/>
+                                <Carousel.Item >
+                                    <FPSBarChart data1={data1} data2={data2} data3={data3} names={names} colors={colors} u={updateC1[0]}/>
                                 </Carousel.Item>
                             }
                             {this.validHeader("FPS") &&
-                                <Carousel.Item>
-                                    <CustomLineChart dataKey="FPS" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[0]} ref={cr1[1]}/>
+                                <Carousel.Item >
+                                    <CustomLineChart dataKey="FPS" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[0]} u={updateC1[1]} />
                                 </Carousel.Item>
                             }
                             {this.validHeader("GPU SCLK") &&
-                                <Carousel.Item>
-                                    <CustomLineChart dataKey="GPU SCLK" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[1]} ref={cr1[2]}/>
+                                <Carousel.Item >
+                                    <CustomLineChart dataKey="GPU SCLK" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[1]} u={updateC1[2]} />
                                 </Carousel.Item>
                             }
                             {this.validHeader("GPU UTIL") &&
-                                <Carousel.Item>
-                                    <CustomLineChart dataKey="GPU UTIL" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[2]} ref={cr1[3]}/>
+                                <Carousel.Item >
+                                    <CustomLineChart dataKey="GPU UTIL" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[2]} u={updateC1[3]}/>
                                 </Carousel.Item>
                             }
                         </Carousel>
@@ -115,25 +114,25 @@ class RadeonChart extends React.Component {
                     </Col>
                     <Col xs="auto">
                         {(this.validHeader("GPU TEMP") || this.validHeader("GPU Hotspot") || this.validHeader("GPU PWR") || this.validHeader("GPU FAN") ) &&
-                        <Carousel interval={null} onSelect={(s, e) => cr2[s].current.forceUpdate()}>
+                        <Carousel interval={null} onSelect={(s,e) => {let u = updateC2; u[s]++; this.setState({updateC2: u})}}>
                             {this.validHeader("GPU TEMP") &&
                                 <Carousel.Item>
-                                    <CustomLineChart dataKey="GPU TEMP" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[3]} ref={cr2[0]}/>
+                                    <CustomLineChart dataKey="GPU TEMP" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[3]} u={updateC2[0]}/>
                                 </Carousel.Item>
                             }
                             {this.validHeader("GPU Hotspot") &&
                                 <Carousel.Item>
-                                <CustomLineChart dataKey="GPU Hotspot" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[4]} ref={cr2[1]}/>
+                                    <CustomLineChart dataKey="GPU Hotspot" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[4]} u={updateC2[1]}/>
                                 </Carousel.Item>
                             }
                             {this.validHeader("GPU PWR") &&
                                 <Carousel.Item>
-                                    <CustomLineChart dataKey="GPU PWR" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[5]} ref={cr2[2]}/>
+                                    <CustomLineChart dataKey="GPU PWR" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[5]} u={updateC2[2]}/>
                                 </Carousel.Item>
                             }
                             {this.validHeader("GPU FAN") &&
                                 <Carousel.Item>
-                                    <CustomLineChart dataKey="GPU FAN" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[6]} ref={cr2[3]}/>
+                                    <CustomLineChart dataKey="GPU FAN" data1={data1} data2={data2} data3={data3} names={names} colors={colors} chartTexts={chartTexts[6]} u={updateC2[3]}/>
                                 </Carousel.Item>
                             }
                         </Carousel>

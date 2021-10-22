@@ -27,7 +27,7 @@
 .carousel {
   width:900px;
   height:500px;
-  margin: auto;
+  margin: 10px auto;
 }
 
 .carousel-control-next-icon {
@@ -42,6 +42,12 @@
   position: absolute;
 }
 
+a.carousel-control-prev, a.carousel-control-next {
+  height: 10%;
+  position: absolute;
+  top: 450px;
+}
+
 .bg-title {
   background-color: #272727;
 }
@@ -53,4 +59,19 @@
 
 .my-modal .modal-footer {
   border-top:  0;
+}
+
+.recharts-wrapper + .line-chart-dl-btn {
+  position: relative;
+  bottom: 38px;
+  left: 380px;
+	color: #a8a8a8;
+	border-color: #a8a8a8;
+  box-shadow: none;
+}
+
+.recharts-wrapper + .line-chart-dl-btn:hover {
+	color: #272727;
+	background-color: #a8a8a8;
+	border-color: #a8a8a8;
 }
