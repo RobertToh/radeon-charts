@@ -2,13 +2,14 @@ import './App.css';
 import RadeonChart from './RadeonCharts';
 import TitleBar from './TitleBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
 
 function App() {
     return (
-        <div className="App">
+        <Container fluid className="App">
             <TitleBar />
             <RadeonChart/>
-        </div>
+        </Container>
     );
 }
 

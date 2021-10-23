@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   background-color: #212121;
-  min-height: 100vh;
+  min-height: 94.1vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,4 +74,8 @@ a.carousel-control-prev, a.carousel-control-next {
 	color: #272727;
 	background-color: #a8a8a8;
 	border-color: #a8a8a8;
+}
+
+body { 
+  padding-top: 55px; 
 }
