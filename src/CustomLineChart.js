@@ -48,11 +48,13 @@ class CustomLineChart extends React.Component {
         let title = this.props.chartTexts.title;
         let yAxis = this.props.chartTexts.yAxis;
         let unit = this.props.chartTexts.unit;
+        let render = this.props.r;
         
         console.log(this.props);
 
         let [getPng, { ref, isLoading }] = this.props.dlHook;
         return (
+        <>{render ? 
             <>
                 <LineChart width={900} height={460} margin={{ top: 25, right: 40, bottom: 25, left: 5 }} ref={ref}>
                     <XAxis padding={{ left: 10, right: 10 }} interval={interval} dataKey="Time" allowDuplicatedCategory={false} stroke="#a8a8a8">
@@ -71,6 +73,7 @@ class CustomLineChart extends React.Component {
                     {isLoading ? 'Downloading...' : 'Download Chart'}
                 </Button>
             </>
+        : null}</>
         )
     }
 }

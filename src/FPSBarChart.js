@@ -55,7 +55,9 @@ class FPSBarChart extends React.Component {
     render() {
         let data = this.formatData(this.props);
         let [getPng, { ref, isLoading }] = this.props.dlHook;
+        let render = this.props.r;
         return(
+        <>{render ?
             <>
                 <BarChart layout="vertical" width={900} height={460} data={data} margin={{ top: 5, right: 40, bottom: 35, left: 30 }} ref={ref}>
                     <XAxis type="number" stroke="#a8a8a8"> 
@@ -72,6 +74,7 @@ class FPSBarChart extends React.Component {
                         {isLoading ? 'Downloading...' : 'Download Chart'}
                 </Button>
             </>
+        : null}</>
         )
     }
 }
